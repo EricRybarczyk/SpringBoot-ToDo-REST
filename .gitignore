@@ -1,0 +1,57 @@
+HELP.md
+target/
+!**/src/main/**
+!**/src/test/**
+.sts4-cache
+
+### Maven ###
+!.mvn/wrapper/maven-wrapper.jar
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+/log/
+/target/
+
+### Gradle ###
+!gradle/wrapper/gradle-wrapper.jar
+.gradle/
+/build/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+*.ids
+*.orig
+
+### VS Code ###
+.vscode/
+
+### Package Files ###
+*.jar
+*.war
+*.ear
+*.db
+
+### Directories ###
+/bin/
+/deploy/
+
+### Logs ###
+*.log
+
+### Misc ###
+*.class
+*.*~
+*~
+.merge_file*
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
