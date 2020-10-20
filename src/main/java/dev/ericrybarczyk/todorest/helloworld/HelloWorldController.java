@@ -1,4 +1,4 @@
-package dev.ericrybarczyk.todorest;
+package dev.ericrybarczyk.todorest.helloworld;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

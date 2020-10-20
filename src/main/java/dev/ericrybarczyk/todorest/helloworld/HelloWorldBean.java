@@ -1,4 +1,4 @@
-package dev.ericrybarczyk.todorest;
+package dev.ericrybarczyk.todorest.helloworld;
 
 public class HelloWorldBean {
 
