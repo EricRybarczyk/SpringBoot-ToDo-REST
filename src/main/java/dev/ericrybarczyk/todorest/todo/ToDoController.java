@@ -1,9 +1,7 @@
 package dev.ericrybarczyk.todorest.todo;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -21,8 +19,14 @@ public class ToDoController {
         return todoHardcodedService.findAll();
     }
 
-    // delete a To-Do for a User
-    // DELETE /users/{username}/todos/{todoId}
+    @DeleteMapping("/users/{username}/todos/{todoId}")
+    public ResponseEntity<Void> deleteToDoItem(@PathVariable String username, @PathVariable long todoId) {
+        ToDo toDo = todoHardcodedService.deleteById(todoId);
+        if (toDo != null) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
 
 
     // update a To-Do for a User

@@ -58,4 +58,17 @@ public class ToDo {
         isDone = done;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (other == null || getClass() != other.getClass()) return false;
+        ToDo toDo = (ToDo) other;
+        return id == toDo.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Long.hashCode(id);
+    }
+
 }
