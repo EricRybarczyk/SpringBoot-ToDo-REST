@@ -1,8 +1,8 @@
 package dev.ericrybarczyk.todorest.todo;
 
 import org.springframework.stereotype.Service;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -12,9 +12,9 @@ public class TodoHardcodedService {
     private static int idCounter = 0;
 
     static {
-        toDoList.add(new ToDo(++idCounter, "demouser", "Complete Angular Course", new Date(), false));
-        toDoList.add(new ToDo(++idCounter, "demouser", "Complete Microservices Course", new Date(), false));
-        toDoList.add(new ToDo(++idCounter, "demouser", "Build a strong demo app portfolio", new Date(), false));
+        toDoList.add(new ToDo(++idCounter, "demouser", "Complete Angular Course", LocalDate.now(), false));
+        toDoList.add(new ToDo(++idCounter, "demouser", "Complete Microservices Course", LocalDate.now(), false));
+        toDoList.add(new ToDo(++idCounter, "demouser", "Build a strong demo app portfolio", LocalDate.now(), false));
     }
 
     public List<ToDo> findAll() {

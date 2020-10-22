@@ -1,19 +1,19 @@
 package dev.ericrybarczyk.todorest.todo;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class ToDo {
 
     private long id;
     private String username;
     private String description;
-    private Date targetDate;
+    private LocalDate targetDate;
     private boolean isDone;
 
     public ToDo() {
     }
 
-    public ToDo(long id, String username, String description, Date targetDate, boolean isDone) {
+    public ToDo(long id, String username, String description, LocalDate targetDate, boolean isDone) {
         this.id = id;
         this.username = username;
         this.description = description;
@@ -45,11 +45,11 @@ public class ToDo {
         this.description = description;
     }
 
-    public Date getTargetDate() {
+    public LocalDate getTargetDate() {
         return targetDate;
     }
 
-    public void setTargetDate(Date targetDate) {
+    public void setTargetDate(LocalDate targetDate) {
         this.targetDate = targetDate;
     }
 
