@@ -21,19 +21,19 @@ public class TodoHardcodedService {
         return toDoList;
     }
 
+    public ToDo findById(long id) {
+        return toDoList.stream()
+                .filter(e -> e.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
+
     public ToDo deleteById(long id) {
         ToDo todo = findById(id);
         if (toDoList.remove(todo)) {
             return todo;
         }
         return null;
-    }
-
-    private ToDo findById(long id) {
-        return toDoList.stream()
-                .filter(e -> e.getId() == id)
-                .findFirst()
-                .orElse(null);
     }
 
 }
