@@ -1,7 +1,10 @@
 package dev.ericrybarczyk.todorest.todo;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import java.net.URI;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -33,12 +36,17 @@ public class ToDoController {
         return ResponseEntity.notFound().build();
     }
 
+    @PutMapping("/users/{username}/todos/{todoId}")
+    public ResponseEntity<ToDo> updateToDoItem(@PathVariable String username, @PathVariable long todoId, @RequestBody ToDo toDo) {
+        ToDo updatedToDo = todoHardcodedService.save(toDo);
+        return new ResponseEntity<>(updatedToDo, HttpStatus.OK);
+    }
 
-    // update a To-Do for a User
-    // PUT /users/{username}/todos/{todoId}
-
-
-    // create a new To-Do for a User
-    // POST /users/{username}/todos
+    @PostMapping("/users/{username}/todos/")
+    public ResponseEntity<ToDo> saveNewToDoItem(@PathVariable String username, @RequestBody ToDo toDo) {
+        ToDo createdToDo = todoHardcodedService.save(toDo);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createdToDo.getId()).toUri();
+        return ResponseEntity.created(uri).build();
+    }
 
 }

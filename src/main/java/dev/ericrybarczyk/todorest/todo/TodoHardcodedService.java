@@ -28,6 +28,17 @@ public class TodoHardcodedService {
                 .orElse(null);
     }
 
+    public ToDo save(ToDo toDo) {
+        if (toDo.getId() < 1) {
+            toDo.setId(++idCounter);
+        } else {
+            // keep it simple for this demo hard-coded data store
+            deleteById(toDo.getId());
+        }
+        toDoList.add(toDo);
+        return toDo;
+    }
+
     public ToDo deleteById(long id) {
         ToDo todo = findById(id);
         if (toDoList.remove(todo)) {
