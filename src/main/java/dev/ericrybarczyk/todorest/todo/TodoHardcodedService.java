@@ -31,12 +31,21 @@ public class TodoHardcodedService {
     public ToDo save(ToDo toDo) {
         if (toDo.getId() < 1) {
             toDo.setId(++idCounter);
+            toDoList.add(toDo);
         } else {
-            // keep it simple for this demo hard-coded data store
-            deleteById(toDo.getId());
+            updateExisting(toDo);
         }
-        toDoList.add(toDo);
         return toDo;
+    }
+
+    private void updateExisting(ToDo toDo) {
+        ToDo existingToDo = findById(toDo.getId());
+        if (existingToDo == null) {
+            return;
+        }
+        existingToDo.setDescription(toDo.getDescription());
+        existingToDo.setTargetDate(toDo.getTargetDate());
+        existingToDo.setDone(toDo.isDone());
     }
 
     public ToDo deleteById(long id) {
