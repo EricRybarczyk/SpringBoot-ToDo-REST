@@ -11,25 +11,27 @@ import java.util.List;
 @RestController
 public class ToDoController {
 
-    private TodoHardcodedService todoHardcodedService;
+    // TODO: the username path variable needs to be validated against the authenticated user
 
-    public ToDoController(TodoHardcodedService todoHardcodedService) {
-        this.todoHardcodedService = todoHardcodedService;
+    private final TodoService todoService;
+
+    public ToDoController(TodoService todoService) {
+        this.todoService = todoService;
     }
 
     @GetMapping("/users/{username}/todos")
     public List<ToDo> getAllToDoItems(@PathVariable String username) {
-        return todoHardcodedService.findAll();
+        return todoService.findAll(username);
     }
 
     @GetMapping("/users/{username}/todos/{todoId}")
     public ToDo getToDoItem(@PathVariable String username, @PathVariable long todoId) {
-        return todoHardcodedService.findById(todoId);
+        return todoService.findById(username, todoId);
     }
 
     @DeleteMapping("/users/{username}/todos/{todoId}")
     public ResponseEntity<Void> deleteToDoItem(@PathVariable String username, @PathVariable long todoId) {
-        ToDo toDo = todoHardcodedService.deleteById(todoId);
+        ToDo toDo = todoService.deleteById(username, todoId);
         if (toDo != null) {
             return ResponseEntity.noContent().build();
         }
@@ -38,13 +40,14 @@ public class ToDoController {
 
     @PutMapping("/users/{username}/todos/{todoId}")
     public ResponseEntity<ToDo> updateToDoItem(@PathVariable String username, @PathVariable long todoId, @RequestBody ToDo toDo) {
-        ToDo updatedToDo = todoHardcodedService.save(toDo);
+        ToDo updatedToDo = todoService.save(username, toDo);
         return new ResponseEntity<>(updatedToDo, HttpStatus.OK);
     }
 
     @PostMapping("/users/{username}/todos/")
     public ResponseEntity<ToDo> saveNewToDoItem(@PathVariable String username, @RequestBody ToDo toDo) {
-        ToDo createdToDo = todoHardcodedService.save(toDo);
+        toDo.setUsername(username);
+        ToDo createdToDo = todoService.save(username, toDo);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createdToDo.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
