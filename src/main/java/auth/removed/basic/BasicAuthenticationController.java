@@ -1,4 +1,4 @@
-package dev.ericrybarczyk.todorest.basic.auth;
+package auth.removed.basic;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

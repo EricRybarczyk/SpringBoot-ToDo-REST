@@ -1,4 +1,4 @@
-package dev.ericrybarczyk.todorest.basic.auth;
+package auth.removed.basic;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

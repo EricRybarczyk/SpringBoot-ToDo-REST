@@ -1,4 +1,4 @@
-package dev.ericrybarczyk.todorest.basic.auth;
+package auth.removed.basic;
 
 public class AuthenticationBean {
 

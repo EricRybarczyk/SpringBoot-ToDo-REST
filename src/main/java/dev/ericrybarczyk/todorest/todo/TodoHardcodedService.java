@@ -12,7 +12,7 @@ public class TodoHardcodedService {
     private static int idCounter = 0;
 
     static {
-        toDoList.add(new ToDo(++idCounter, "demouser", "Complete Angular Course", LocalDate.now(), false));
+        toDoList.add(new ToDo(++idCounter, "demouser", "Complete Angular Crash Course", LocalDate.now(), false));
         toDoList.add(new ToDo(++idCounter, "demouser", "Complete Microservices Course", LocalDate.now(), false));
         toDoList.add(new ToDo(++idCounter, "demouser", "Build a strong demo app portfolio", LocalDate.now(), false));
     }
